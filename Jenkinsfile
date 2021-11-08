@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                createS3Bucket('tf.state.bucket')
+                createS3Bucket('hari.tf')
             }
         }
         stage ('Terraform init and apply - dev'){
