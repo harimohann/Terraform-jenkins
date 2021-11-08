@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                createS3Bucket('hari-tf')
+                createS3Bucket('tf.state.bucket')
             }
         }
         stage ('Terraform init and apply - dev'){
@@ -26,6 +26,6 @@ def getTerraformPath(){
     return tfHOME
 }
 
-def createS3Bucket(){
-    sh returnStatus: true, script: "aws s3 mb ${bucketName}" --region=us-east-1
+def createS3Bucket(bucketName){
+    sh returnStatus: true, script: "aws s3 mb ${bucketName} --region=us-east-1"
 }
