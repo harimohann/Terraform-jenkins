@@ -8,8 +8,8 @@ pipeline {
             steps {
                 script {
                     sh "terraform init"
-                    sh returnStatus: true, script: 'terraform workspace new dev'
-                    sh "terraform apply -var-file=dev.tfvars --auto-approve"
+                    sh returnStatus: true, script: 'terraform workspace new prod'
+                    sh "terraform apply -var-file=Prod.tfvars --auto-approve"
                 }
             }
         }
