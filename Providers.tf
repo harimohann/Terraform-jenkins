@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-      bucket = "hari.tf"
+      bucket = "harie.tf"
       key = "terraform.tfstate"
       region = "us-east-1"
   }

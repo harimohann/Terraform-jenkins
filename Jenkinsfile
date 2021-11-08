@@ -6,15 +6,15 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                createS3Bucket('hari.tf')
+                createS3Bucket('harie.tf')
             }
         }
         stage ('Terraform init and apply - dev'){
             steps {
                 script {
                     sh "terraform init -reconfigure"
-                    sh returnStatus: true, script: 'terraform workspace new prod'
-                    sh "terraform apply -var-file=Prod.tfvars --auto-approve"
+                    sh returnStatus: true, script: 'terraform workspace new dev'
+                    sh "terraform apply -var-file=dev.tfvars --auto-approve"
                 }
             }
         }
