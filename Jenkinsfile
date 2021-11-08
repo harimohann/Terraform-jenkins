@@ -12,7 +12,7 @@ pipeline {
         stage ('Terraform init and apply - dev'){
             steps {
                 script {
-                    sh "terraform init -migrate-state"
+                    sh "terraform init -reconfigure"
                     sh returnStatus: true, script: 'terraform workspace new prod'
                     sh "terraform apply -var-file=Prod.tfvars --auto-approve"
                 }
