@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                createS3Bucket('tf.state.bucket')
+                sh "ansible-playbook s3-bucket.yml"
             }
         }
         stage ('Terraform init and apply - dev'){
