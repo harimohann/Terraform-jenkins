@@ -3,5 +3,5 @@
   tasks:
     - name: Create S3 Bucket
       s3_bucket:
-        name: tf.state.bucket
+        name: prod.bucket
         state: present
