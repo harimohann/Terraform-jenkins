@@ -6,13 +6,14 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                createS3Bucket('harie.tf')
+                createS3Bucket('tf.state.bucket')
             }
         }
         stage ('Terraform init and apply - dev'){
             steps {
                 script {
                     sh "terraform init"
+                    sh returnStatus: true, script: 'terraform workspace new dev'
                     sh "terraform destroy --auto-approve"
                 }
             }
