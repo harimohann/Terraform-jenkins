@@ -14,7 +14,7 @@ pipeline {
                 script {
                     sh "terraform init"
                     sh returnStatus: true, script: 'terraform workspace new dev'
-                    sh "terraform destroy --auto-approve"
+                    sh "terraform apply -var-file=dev.tfvars --auto-approve"
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
 }
 
 def getTerraformPath(){
-    def tfHOME = tool name: 'Terraform-plugin', type: 'terraform'
+    def tfHOME = tool name: 'Terraform-10', type: 'terraform'
     return tfHOME
 }
 
