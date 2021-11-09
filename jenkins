@@ -22,7 +22,3 @@ def getTerraformPath(){
     def tfHOME = tool name: 'Terraform-10', type: 'terraform'
     return tfHOME
 }
-
-def createS3Bucket(bucketName){
-    sh returnStatus: true, script: "aws s3api create-bucket --bucket ${bucketName} --region us-east-1"
-}
