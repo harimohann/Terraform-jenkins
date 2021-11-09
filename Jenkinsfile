@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('S3 - Create Bucket'){
             steps {
-                sh "ansible-playbook s3-bucket.yml"
+                createS3Bucket('tf.state.bucket')
             }
         }
         stage ('Terraform init and apply - dev'){
@@ -14,7 +14,7 @@ pipeline {
                 script {
                     sh "terraform init"
                     sh returnStatus: true, script: 'terraform workspace new dev'
-                    sh "terraform apply -var-file=Prod.tfvars --auto-approve"
+                    sh "terraform apply --auto-approve"
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
 }
 
 def getTerraformPath(){
-    def tfHOME = tool name: 'Terraform-10', type: 'terraform'
+    def tfHOME = tool name: 'Terraform-plugin', type: 'terraform'
     return tfHOME
 }
 

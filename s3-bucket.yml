@@ -2,6 +2,6 @@
 - hosts: localhost
   tasks:
     - name: Create S3 Bucket
-      amazon.aws.s3_bucket:
-        name: prod.bucket
+        s3_bucket:
+        name: tf.state.bucket
         state: present
